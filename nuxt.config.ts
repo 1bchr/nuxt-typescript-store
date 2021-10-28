@@ -1,12 +1,21 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
-  ssr: false,
+  ssr: true,
+
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: (process.env.API_URL || '') + process.env.STORE_ID,
+      https: true
+    }
+  },
+
+  privateRuntimeConfig: {},
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Nuxt.js-TypeScript store',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
@@ -30,6 +39,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    '~/src/plugins/axios'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -65,14 +75,5 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios'
-  ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-    baseURL: (process.env.API_URL || '/') + (process.env.STORE_ID || '/') + '/',
-    params: {
-      token: process.env.TOKEN || ''
-    },
-    https: true
-  }
+  ]
 }
