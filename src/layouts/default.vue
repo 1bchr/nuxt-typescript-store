@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import CommonHeader from '~/src/components/CommonHeader.vue'
+import CommonHeader from '~/src/components/header/CommonHeader.vue'
 
 export default Vue.extend({
   name: 'Default',
