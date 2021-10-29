@@ -1,7 +1,7 @@
 import { getAccessorType, actionTree, getterTree, mutationTree } from 'typed-vuex'
 import { StoreProfile } from '~/src/types'
-
-export const strict = false
+import * as cart from '~/src/store/cart'
+import * as product from '~/src/store/product'
 
 export const state = () => ({
   storeName: ''
@@ -37,5 +37,8 @@ export const accessorType = getAccessorType({
   getters,
   mutations,
   actions,
-  modules: {}
+  modules: {
+    cart,
+    product
+  }
 })
