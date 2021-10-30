@@ -2,11 +2,13 @@ import { getAccessorType, actionTree, getterTree, mutationTree } from 'typed-vue
 import * as cart from '~/src/store/cart'
 import * as product from '~/src/store/product'
 import { StoreProfile, Category, CategoryItem, CurrentCategory } from '~/src/types'
+import { ProductsList } from '~/src/types/products'
 
 export const state = () => ({
   storeName: '',
   categories: [] as CategoryItem[],
   currentCategory: {} as CurrentCategory,
+  products: [] as ProductsList[],
 
   isMobile: false,
   isMobileOrTable: false,
@@ -33,6 +35,9 @@ export const mutations = mutationTree(state, {
   },
   SET_CATEGORIES (state, categories) {
     state.categories = categories
+  },
+  SET_PRODUCTS (state, products) {
+    state.products = products
   }
 })
 
@@ -63,6 +68,11 @@ export const actions = actionTree({ state, mutations, getters }, {
     const category = await this.$axios.get('/categories') as Category
 
     commit('SET_CATEGORIES', category.items)
+  },
+  async getProducts ({ commit }) {
+    const products = await this.$axios.get('/products') as ProductsList
+
+    commit('SET_PRODUCTS', products.items)
   }
 })
 

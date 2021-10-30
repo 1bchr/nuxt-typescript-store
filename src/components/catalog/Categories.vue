@@ -39,9 +39,6 @@ export default Vue.extend({
     return {
       hoveredCategory: null as CategoryItem | null
     }
-  },
-  mounted () {
-    this.$accessor.getStoreCategory()
   }
 })
 </script>
