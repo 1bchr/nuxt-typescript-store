@@ -8,6 +8,7 @@ import { StoreProfile } from '~/src/types'
 export const state = () => ({
   storeName: '',
 
+  isMobile: false,
   isMobileOrTable: false,
   windowWidth: 0,
   windowHeight: 0
@@ -26,6 +27,7 @@ export const mutations = mutationTree(state, {
     windowHeight
   } : { isMobile: boolean, isTablet: boolean, windowWidth?: number, windowHeight?: number}) {
     state.isMobileOrTable = isMobile || isTablet
+    state.isMobile = isMobile
     if (windowHeight) state.windowHeight = windowHeight
     if (windowWidth) state.windowWidth = windowWidth
   }

@@ -1,6 +1,9 @@
 <template>
   <div class="navbar navbar-dark bg-info">
-    <div class="container d-flex justify-content-between">
+    <div
+      class="w-100 d-flex justify-content-between"
+      :class="{ 'container': !$accessor.isMobileOrTable }"
+    >
       <a class="navbar-brand" href="/">{{ $accessor.storeName }}</a>
       <div class="navbar-nav flex-row">
         <a class="nav-link ml-2" href="#">Корзина</a>
