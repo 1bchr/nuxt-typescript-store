@@ -24,7 +24,7 @@ export default Vue.extend({
   mounted () {
     this.$nextTick(() => {
       this.$nuxt.$loading.start()
-      setTimeout(() => this.$nuxt.$loading.finish(), 1500)
+      setTimeout(() => this.$nuxt.$loading.finish(), 2000)
     })
   }
 })
