@@ -9,7 +9,7 @@
           v-for="category in $accessor.categories"
           :key="category.id"
           class="list-group-item d-flex justify-content-between align-items-center pointer"
-          :class="{ 'active-bg': $accessor.currentCategory.id === category.id }"
+          :class="{ 'active-bg': false }"
           @mouseenter="hoveredCategory = category"
           @mouseleave="hoveredCategory = null"
         >

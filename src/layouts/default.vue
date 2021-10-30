@@ -55,6 +55,15 @@ html, body {
   min-height: 100%;
 }
 
+a {
+  color: black;
+
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+}
+
 .pointer {
   cursor: pointer;
 }

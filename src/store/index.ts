@@ -1,12 +1,11 @@
 import { getAccessorType, actionTree, getterTree, mutationTree } from 'typed-vuex'
 import * as cart from '~/src/store/cart'
-import { StoreProfile, Category, CategoryItem, CurrentCategory } from '~/src/types'
+import { StoreProfile, Category, CategoryItem } from '~/src/types'
 import { ProductsList } from '~/src/types/products'
 
 export const state = () => ({
   storeName: '',
   categories: [] as CategoryItem[],
-  currentCategory: {} as CurrentCategory,
   products: {} as ProductsList,
 
   isMobile: false,

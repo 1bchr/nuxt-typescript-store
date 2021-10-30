@@ -4,7 +4,7 @@
       class="py-3"
       :class="{ 'px-3': $accessor.isMobileOrTable }"
     >
-      Каталог
+      Название категории
     </h1>
     <div
       class="row mx-0"
@@ -47,14 +47,9 @@ import ProductCard from '~/src/components/catalog/ProductCard.vue'
 export default Vue.extend({
   name: 'App',
   components: { Categories, ProductCard },
-  async mounted () {
-    try {
-      await Promise.all([
-        this.$accessor.getStoreCategory(),
-        this.$accessor.getProducts()
-      ])
-    } catch (e) {
-      throw new Error(e)
+  computed: {
+    id () {
+      return this.$route.params.category
     }
   }
 })
