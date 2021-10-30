@@ -11,7 +11,11 @@
         >
           <span class="navbar-toggler-icon" />
         </button>
-        <a class="navbar-brand ml-2" href="/">
+        <a
+          class="navbar-brand"
+          :class="{ 'ml-2': $accessor.isMobile }"
+          href="/"
+        >
           {{ $accessor.storeName }}
         </a>
       </div>

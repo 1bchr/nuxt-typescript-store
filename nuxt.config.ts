@@ -67,7 +67,8 @@ export default {
       }
     ],
     '@nuxtjs/dotenv',
-    'nuxt-typed-vuex'
+    'nuxt-typed-vuex',
+    '@nuxtjs/style-resources'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules

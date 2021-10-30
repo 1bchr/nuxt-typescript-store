@@ -1,6 +1,20 @@
 <template>
-  <div>
-    Test
+  <div class="row">
+    <div
+      v-if="!$accessor.isMobile"
+      class="col bg-secondary"
+    >
+      qwe
+    </div>
+    <div
+      class="bg-danger"
+      :class="{
+        'col': $accessor.isMobile,
+        'col-9': !$accessor.isMobile
+      }"
+    >
+      qwe
+    </div>
   </div>
 </template>
 
