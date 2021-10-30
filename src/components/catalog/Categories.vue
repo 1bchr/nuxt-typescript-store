@@ -45,7 +45,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .active-bg {
-  background-color: #17a2b8 !important;
+  background-color: var(--info) !important;
   color: white;
 }
 
@@ -53,7 +53,7 @@ export default Vue.extend({
   transition: .3s linear;
 
   &:hover {
-    background-color: rgba(23, 162, 184, 0.1);
+    background-color: rgba(23, 162, 184, 0.2);
   }
 }
 </style>
