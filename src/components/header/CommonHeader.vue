@@ -34,7 +34,3 @@ export default Vue.extend({
   methods: {}
 })
 </script>
-
-<style lang="scss" scoped>
-
-</style>

@@ -1,10 +1,13 @@
 <template>
-  <div class="row">
+  <div
+    class="row"
+    :class="{ 'px-3 mx-0': $accessor.isMobileOrTable }"
+  >
     <div
       v-if="!$accessor.isMobile"
-      class="col bg-secondary"
+      class="col px-0"
     >
-      qwe
+      <categories />
     </div>
     <div
       class="bg-danger"
@@ -20,8 +23,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import Categories from '~/src/components/catalog/Categories.vue'
 
 export default Vue.extend({
-  name: 'App'
+  name: 'App',
+  components: { Categories }
 })
 </script>
