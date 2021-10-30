@@ -1,6 +1,5 @@
 import { getAccessorType, actionTree, getterTree, mutationTree } from 'typed-vuex'
 import * as cart from '~/src/store/cart'
-import * as product from '~/src/store/product'
 import { StoreProfile, Category, CategoryItem, CurrentCategory } from '~/src/types'
 import { ProductsList } from '~/src/types/products'
 
@@ -8,7 +7,7 @@ export const state = () => ({
   storeName: '',
   categories: [] as CategoryItem[],
   currentCategory: {} as CurrentCategory,
-  products: [] as ProductsList[],
+  products: {} as ProductsList,
 
   isMobile: false,
   isMobileOrTable: false,
@@ -72,7 +71,7 @@ export const actions = actionTree({ state, mutations, getters }, {
   async getProducts ({ commit }) {
     const products = await this.$axios.get('/products') as ProductsList
 
-    commit('SET_PRODUCTS', products.items)
+    commit('SET_PRODUCTS', products)
   }
 })
 
@@ -82,7 +81,6 @@ export const accessorType = getAccessorType({
   mutations,
   actions,
   modules: {
-    cart,
-    product
+    cart
   }
 })

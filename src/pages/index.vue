@@ -25,8 +25,14 @@
           'col-9': !$accessor.isMobile
         }"
       >
-        <div class="col px-0">
-          qwe
+        <div
+          v-for="product in $accessor.products.items"
+          :key="product.id"
+          class="col px-0"
+        >
+          <product-card
+            :product="product"
+          />
         </div>
       </div>
     </div>
@@ -36,10 +42,11 @@
 <script lang="ts">
 import Vue from 'vue'
 import Categories from '~/src/components/catalog/Categories.vue'
+import ProductCard from '~/src/components/catalog/ProductCard.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Categories },
+  components: { Categories, ProductCard },
   async mounted () {
     try {
       await Promise.all([

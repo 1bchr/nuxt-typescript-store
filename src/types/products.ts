@@ -6,6 +6,7 @@ export interface ProductGalleryImages {
 }
 
 export interface Product {
+  id: number
   name: string
   description: string
   galleryImages: ProductGalleryImages[]
