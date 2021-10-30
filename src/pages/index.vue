@@ -1,22 +1,30 @@
 <template>
-  <div
-    class="row"
-    :class="{ 'px-3 mx-0': $accessor.isMobileOrTable }"
-  >
-    <div
-      v-if="!$accessor.isMobile"
-      class="col px-0"
+  <div>
+    <h1
+      class="py-3"
+      :class="{ 'px-3': $accessor.isMobileOrTable }"
     >
-      <categories />
-    </div>
+      {{ $accessor.currentCategory.name || 'Каталог' }}
+    </h1>
     <div
-      class="bg-danger"
-      :class="{
-        'col': $accessor.isMobile,
-        'col-9': !$accessor.isMobile
-      }"
+      class="row mx-0"
+      :class="{ 'px-3': $accessor.isMobileOrTable }"
     >
-      qwe
+      <div
+        v-if="!$accessor.isMobile"
+        class="col px-0"
+      >
+        <categories />
+      </div>
+      <div
+        class="bg-danger"
+        :class="{
+          'col': $accessor.isMobile,
+          'col-9': !$accessor.isMobile
+        }"
+      >
+        qwe
+      </div>
     </div>
   </div>
 </template>

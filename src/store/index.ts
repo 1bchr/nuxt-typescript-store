@@ -1,11 +1,12 @@
 import { getAccessorType, actionTree, getterTree, mutationTree } from 'typed-vuex'
 import * as cart from '~/src/store/cart'
 import * as product from '~/src/store/product'
-import { StoreProfile, Category, CategoryItem } from '~/src/types'
+import { StoreProfile, Category, CategoryItem, CurrentCategory } from '~/src/types'
 
 export const state = () => ({
   storeName: '',
   categories: [] as CategoryItem[],
+  currentCategory: {} as CurrentCategory,
 
   isMobile: false,
   isMobileOrTable: false,
@@ -39,8 +40,7 @@ export const actions = actionTree({ state, mutations, getters }, {
   async nuxtServerInit ({ dispatch }) {
     try {
       await Promise.all([
-        dispatch('getStoreProfile'),
-        dispatch('getStoreCategory')
+        dispatch('getStoreProfile')
       ])
     } catch (e) {
       console.error(e)

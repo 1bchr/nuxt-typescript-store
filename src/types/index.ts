@@ -4,6 +4,11 @@ export interface StoreProfile {
   }
 }
 
+export interface CurrentCategory {
+  id: number
+  name: string
+}
+
 export interface ImageDetails {
   url: string
   width: number

@@ -27,6 +27,10 @@ export default {
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
+  loading: {
+    color: '#dc3545',
+    height: '3px'
+  },
   dir: {
     assets: 'src/assets',
     app: 'src/app',
