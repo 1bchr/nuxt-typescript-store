@@ -4,7 +4,17 @@
       class="w-100 d-flex justify-content-between"
       :class="{ 'container': !$accessor.isMobileOrTable }"
     >
-      <a class="navbar-brand" href="/">{{ $accessor.storeName }}</a>
+      <div class="d-flex">
+        <button
+          v-if="$accessor.isMobile"
+          class="navbar-toggler"
+        >
+          <span class="navbar-toggler-icon" />
+        </button>
+        <a class="navbar-brand ml-2" href="/">
+          {{ $accessor.storeName }}
+        </a>
+      </div>
       <div class="navbar-nav flex-row">
         <a class="nav-link ml-2" href="#">Корзина</a>
       </div>
@@ -16,7 +26,8 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'CommonHeader'
+  name: 'CommonHeader',
+  methods: {}
 })
 </script>
 

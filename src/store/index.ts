@@ -1,5 +1,3 @@
-import { IncomingMessage } from 'http'
-import { Context } from '@nuxt/types'
 import { getAccessorType, actionTree, getterTree, mutationTree } from 'typed-vuex'
 import * as cart from '~/src/store/cart'
 import * as product from '~/src/store/product'
@@ -34,10 +32,9 @@ export const mutations = mutationTree(state, {
 })
 
 export const actions = actionTree({ state, mutations, getters }, {
-  async nuxtServerInit ({ dispatch }, { req }: Context) {
+  async nuxtServerInit ({ dispatch }) {
     try {
       await Promise.all([
-        dispatch('setDevice', req),
         dispatch('getStoreProfile'),
         dispatch('getStoreCategory')
       ])
@@ -45,24 +42,13 @@ export const actions = actionTree({ state, mutations, getters }, {
       console.error(e)
     }
   },
-  async setDevice ({ commit }, req?: IncomingMessage) {
-    if (req) {
-      if (!req.headers['user-agent']) return
-      const { getParser } = await import('bowser')
-      const bowser = getParser(req.headers['user-agent'] || '')
-      const { type } = bowser.getPlatform()
-      return commit('SET_DEVICE_INFO', {
-        isMobile: type === 'mobile',
-        isTablet: type === 'tablet'
-      })
-    } else if (typeof window !== 'undefined') {
-      return commit('SET_DEVICE_INFO', {
-        isMobile: window.innerWidth < 768,
-        isTablet: window.innerWidth < 1280 && window.innerWidth > 768,
-        windowWidth: window.innerWidth,
-        windowHeight: window.innerHeight
-      })
-    }
+  setDevice ({ commit }) {
+    commit('SET_DEVICE_INFO', {
+      isMobile: window.innerWidth < 768,
+      isTablet: window.innerWidth < 1280 && window.innerWidth > 768,
+      windowWidth: window.innerWidth,
+      windowHeight: window.innerHeight
+    })
   },
   async getStoreProfile ({ commit }) {
     const profile = await this.$axios.get('/profile') as StoreProfile
