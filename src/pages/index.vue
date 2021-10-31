@@ -20,10 +20,13 @@
         <categories />
       </div>
       <div
-        class="row row-cols-3 ml-0"
+        class="row ml-0"
         :class="{
+          'row-cols-3': !$accessor.isMobileOrTable,
+          'row-cols-2': $accessor.isMobileOrTable && !$accessor.isVerticalMobile,
+          'row-cols-1': $accessor.isVerticalMobile,
           'col px-0': $accessor.isMobile,
-          'col-9 px-2': !$accessor.isMobile,
+          'col-9 px-2': !$accessor.isMobile
         }"
       >
         <div

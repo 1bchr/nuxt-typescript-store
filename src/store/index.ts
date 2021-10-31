@@ -9,6 +9,7 @@ export const state = () => ({
   products: {} as ProductsList,
 
   isMobile: false,
+  isVerticalMobile: false,
   isTablet: false,
   isMobileOrTable: false,
   windowWidth: 0,
@@ -23,13 +24,15 @@ export const mutations = mutationTree(state, {
   },
   SET_DEVICE_INFO (state, {
     isMobile,
+    isVerticalMobile,
     isTablet,
     windowWidth,
     windowHeight
-  } : { isMobile: boolean, isTablet: boolean, windowWidth?: number, windowHeight?: number}) {
+  } : { isMobile: boolean, isVerticalMobile: boolean, isTablet: boolean, windowWidth?: number, windowHeight?: number}) {
     state.isMobileOrTable = isMobile || isTablet
     state.isMobile = isMobile
     state.isTablet = isTablet
+    state.isVerticalMobile = isVerticalMobile
     if (windowHeight) state.windowHeight = windowHeight
     if (windowWidth) state.windowWidth = windowWidth
   },
@@ -54,6 +57,7 @@ export const actions = actionTree({ state, mutations, getters }, {
   setDevice ({ commit }) {
     commit('SET_DEVICE_INFO', {
       isMobile: window.innerWidth < 768,
+      isVerticalMobile: window.innerWidth < 510,
       isTablet: window.innerWidth < 1280 && window.innerWidth > 768,
       windowWidth: window.innerWidth,
       windowHeight: window.innerHeight
