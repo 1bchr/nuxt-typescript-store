@@ -12,7 +12,10 @@
     </h1>
     <div
       class="row mx-0"
-      :class="{ 'px-2': $accessor.isMobileOrTable }"
+      :class="{
+        'px-3': $accessor.isMobileOrTable,
+        'px-2': $accessor.isMobile
+      }"
     >
       <div
         v-if="!$accessor.isMobile"
@@ -23,8 +26,10 @@
         />
       </div>
       <div
-        class="row row-cols-3 ml-0"
+        class="row ml-0"
         :class="{
+          'row-cols-3': !$accessor.isMobileOrTable,
+          'row-cols-2': $accessor.isMobileOrTable,
           'col px-0': $accessor.isMobile,
           'col-9 px-2': !$accessor.isMobile
         }"

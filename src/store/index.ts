@@ -9,6 +9,7 @@ export const state = () => ({
   products: {} as ProductsList,
 
   isMobile: false,
+  isTablet: false,
   isMobileOrTable: false,
   windowWidth: 0,
   windowHeight: 0
@@ -28,6 +29,7 @@ export const mutations = mutationTree(state, {
   } : { isMobile: boolean, isTablet: boolean, windowWidth?: number, windowHeight?: number}) {
     state.isMobileOrTable = isMobile || isTablet
     state.isMobile = isMobile
+    state.isTablet = isTablet
     if (windowHeight) state.windowHeight = windowHeight
     if (windowWidth) state.windowWidth = windowWidth
   },
