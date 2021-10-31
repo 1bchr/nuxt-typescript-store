@@ -1,7 +1,11 @@
 <template>
   <div>
+    <breadcrumbs
+      v-if="$accessor.categories.length"
+      :category="id"
+    />
     <h1
-      class="py-3"
+      class="pb-3"
       :class="{ 'px-3': $accessor.isMobileOrTable }"
     >
       {{ getCategoryName() }}
@@ -43,10 +47,11 @@
 import Vue from 'vue'
 import Categories from '~/src/components/catalog/Categories.vue'
 import ProductCard from '~/src/components/catalog/ProductCard.vue'
+import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Categories, ProductCard },
+  components: { Categories, ProductCard, Breadcrumbs },
   computed: {
     id () {
       return Number(this.$route.params.category)
@@ -68,7 +73,7 @@ export default Vue.extend({
     },
     getCategoryName (): string {
       const currentCategory = this.$accessor.categories.find(el => el.id === this.id)
-      return currentCategory ? currentCategory.name : 'Категория'
+      return currentCategory ? currentCategory.name : ''
     }
   }
 })
