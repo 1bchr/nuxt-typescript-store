@@ -1,8 +1,7 @@
 <template>
   <div>
-    <breadcrumbs />
     <h1
-      class="pb-3"
+      class="py-3"
       :class="{ 'px-3': $accessor.isMobileOrTable }"
     >
       Каталог
@@ -42,11 +41,10 @@
 import Vue from 'vue'
 import Categories from '~/src/components/catalog/Categories.vue'
 import ProductCard from '~/src/components/catalog/ProductCard.vue'
-import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
 
 export default Vue.extend({
   name: 'App',
-  components: { Categories, ProductCard, Breadcrumbs },
+  components: { Categories, ProductCard },
   async mounted () {
     try {
       await Promise.all([

@@ -11,13 +11,13 @@
         >
           <span class="navbar-toggler-icon" />
         </button>
-        <a
+        <nuxt-link
           class="navbar-brand"
           :class="{ 'ml-2': $accessor.isMobile }"
-          href="/"
+          to="/"
         >
           {{ $accessor.storeName }}
-        </a>
+        </nuxt-link>
       </div>
       <div class="navbar-nav flex-row">
         <a class="nav-link ml-2" href="#">Корзина</a>
