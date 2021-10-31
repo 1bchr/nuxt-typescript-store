@@ -1,6 +1,6 @@
 <template>
   <div id="__store-root" class="d-flex flex-column h-100">
-    <common-header />
+    <common-header class="sticky-top" />
     <div
       class="flex-grow-1"
       :class="{ 'container': !$accessor.isMobileOrTable }"

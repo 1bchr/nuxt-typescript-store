@@ -52,14 +52,7 @@ export default Vue.extend({
   name: 'App',
   components: { Categories, ProductCard },
   async fetch () {
-    try {
-      await Promise.all([
-        this.$accessor.getStoreCategory(),
-        this.$accessor.getProducts()
-      ])
-    } catch (e) {
-      throw new Error(e)
-    }
+    await this.$accessor.getProducts()
   }
 })
 </script>

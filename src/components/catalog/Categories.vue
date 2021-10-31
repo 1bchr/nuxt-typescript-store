@@ -4,7 +4,10 @@
     class="d-flex flex-column w-100"
   >
     <div class="d-flex flex-column">
-      <h5 class="pb-2">
+      <h5
+        v-if="!$accessor.isMobileOrTable"
+        class="pb-2"
+      >
         Категории:
       </h5>
       <ul class="list-group">
@@ -12,7 +15,10 @@
           v-for="category in $accessor.categories"
           :key="category.id"
           class="list-group-item d-flex justify-content-between align-items-center pointer"
-          :class="{ 'active-bg': currentCategory === category.id }"
+          :class="{
+            'active-bg': currentCategory === category.id,
+            'list-group-hover': !$accessor.isMobile
+          }"
           @mouseenter="hoveredCategory = category"
           @mouseleave="hoveredCategory = null"
         >
@@ -29,7 +35,7 @@
       </ul>
     </div>
     <category-info
-      v-if="hoveredCategory"
+      v-if="hoveredCategory && !$accessor.isMobileOrTable"
       :category="hoveredCategory"
     />
   </div>
@@ -63,7 +69,7 @@ export default Vue.extend({
   color: white;
 }
 
-.list-group-item {
+.list-group-hover {
   transition: .3s linear;
 
   &:hover {

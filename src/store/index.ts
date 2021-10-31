@@ -48,7 +48,8 @@ export const actions = actionTree({ state, mutations, getters }, {
   async nuxtServerInit ({ dispatch }) {
     try {
       await Promise.all([
-        dispatch('getStoreProfile')
+        dispatch('getStoreProfile'),
+        dispatch('getStoreCategories')
       ])
     } catch (e) {
       console.error(e)
@@ -68,7 +69,7 @@ export const actions = actionTree({ state, mutations, getters }, {
 
     commit('SET_STORE_NAME', profile.settings.storeName)
   },
-  async getStoreCategory ({ commit }) {
+  async getStoreCategories ({ commit }) {
     const category = await this.$axios.get('/categories') as Category
 
     commit('SET_CATEGORIES', category.items)
