@@ -12,7 +12,7 @@
     </h1>
     <div
       class="row mx-0"
-      :class="{ 'px-3': $accessor.isMobileOrTable }"
+      :class="{ 'px-2': $accessor.isMobileOrTable }"
     >
       <div
         v-if="!$accessor.isMobile"
@@ -23,10 +23,10 @@
         />
       </div>
       <div
-        class="row row-cols-3 ml-0 p-0"
+        class="row row-cols-3 ml-0"
         :class="{
-          'col': $accessor.isMobile,
-          'col-9': !$accessor.isMobile
+          'col px-0': $accessor.isMobile,
+          'col-9 px-2': !$accessor.isMobile
         }"
       >
         <div
@@ -52,12 +52,7 @@ import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
 export default Vue.extend({
   name: 'App',
   components: { Categories, ProductCard, Breadcrumbs },
-  computed: {
-    id () {
-      return Number(this.$route.params.category)
-    }
-  },
-  async mounted () {
+  async fetch () {
     try {
       await Promise.all([
         this.$accessor.getStoreCategory(),
@@ -65,6 +60,11 @@ export default Vue.extend({
       ])
     } catch (e) {
       throw new Error(e)
+    }
+  },
+  computed: {
+    id () {
+      return Number(this.$route.params.category)
     }
   },
   methods: {

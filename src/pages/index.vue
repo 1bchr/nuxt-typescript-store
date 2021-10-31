@@ -8,7 +8,7 @@
     </h1>
     <div
       class="row mx-0"
-      :class="{ 'px-3': $accessor.isMobileOrTable }"
+      :class="{ 'px-2': $accessor.isMobileOrTable }"
     >
       <div
         v-if="!$accessor.isMobile"
@@ -17,10 +17,10 @@
         <categories />
       </div>
       <div
-        class="row row-cols-3 ml-0 p-0"
+        class="row row-cols-3 ml-0"
         :class="{
-          'col': $accessor.isMobile,
-          'col-9': !$accessor.isMobile
+          'col px-0': $accessor.isMobile,
+          'col-9 px-2': !$accessor.isMobile
         }"
       >
         <div
@@ -45,7 +45,7 @@ import ProductCard from '~/src/components/catalog/ProductCard.vue'
 export default Vue.extend({
   name: 'App',
   components: { Categories, ProductCard },
-  async mounted () {
+  async fetch () {
     try {
       await Promise.all([
         this.$accessor.getStoreCategory(),

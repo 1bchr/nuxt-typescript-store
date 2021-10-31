@@ -1,10 +1,8 @@
 <template>
   <div class="product-card d-flex flex-column mx-2 mb-3 p-3">
-    <img
-      class="product-card__image"
-      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcnyHcErjXASFe1Imj6U_2lmC6xN-UCNyNKuIvSB21UX3ooLyEgBXgnNWo2TBz6pE9gME&usqp=CAU"
-      :alt="product.name + ' images'"
-    >
+    <product-card-img-slider
+      :images="product.galleryImages"
+    />
     <h6 class="mt-3">
       {{ product.name }}
     </h6>
@@ -23,9 +21,11 @@
 // eslint-disable-next-line import/named
 import Vue, { PropType } from 'vue'
 import { Product } from '~/src/types/products'
+import ProductCardImgSlider from '~/src/components/catalog/ProductCardImgSlider.vue'
 
 export default Vue.extend({
   name: 'ProductCard',
+  components: { ProductCardImgSlider },
   props: {
     product: {
       type: Object as PropType<Product>,
@@ -37,13 +37,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .product-card {
+  position: relative;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: .25rem;
-
-  &__image {
-    height: 200px;
-    object-fit: contain;
-  }
 
   &__price {
     font-size: 18px;
