@@ -14,9 +14,7 @@
         v-if="!$accessor.isMobile"
         class="col px-0 d-flex"
       >
-        <categories
-          v-if="$accessor.categories.length"
-        />
+        <categories />
       </div>
       <div
         class="row row-cols-3 ml-0 p-0"
@@ -48,14 +46,7 @@ export default Vue.extend({
   name: 'App',
   components: { Categories, ProductCard },
   async mounted () {
-    try {
-      await Promise.all([
-        this.$accessor.getStoreCategory(),
-        this.$accessor.getProducts()
-      ])
-    } catch (e) {
-      throw new Error(e)
-    }
+    await this.$accessor.getProducts()
   }
 })
 </script>

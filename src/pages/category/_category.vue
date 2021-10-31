@@ -15,7 +15,7 @@
         class="col px-0 d-flex"
       >
         <categories
-          v-if="$accessor.categories.length"
+          :current-category="id"
         />
       </div>
       <div
@@ -49,7 +49,19 @@ export default Vue.extend({
   components: { Categories, ProductCard },
   computed: {
     id () {
-      return this.$route.params.category
+      return Number(this.$route.params.category)
+    }
+  },
+  async mounted () {
+    await this.getProducts(this.id)
+  },
+  methods: {
+    async getProducts (category: number) {
+      await this.$accessor.getProductsByCategory({ category })
+    },
+    getCategoryName (): string {
+      const currentCategory = this.$accessor.categories.find(el => el.id === this.id)
+      return currentCategory ? currentCategory.name : 'Категория'
     }
   }
 })

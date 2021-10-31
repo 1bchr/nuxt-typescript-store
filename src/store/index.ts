@@ -8,6 +8,8 @@ export const state = () => ({
   categories: [] as CategoryItem[],
   products: {} as ProductsList,
 
+  loading: false,
+
   isMobile: false,
   isMobileOrTable: false,
   windowWidth: 0,
@@ -43,7 +45,8 @@ export const actions = actionTree({ state, mutations, getters }, {
   async nuxtServerInit ({ dispatch }) {
     try {
       await Promise.all([
-        dispatch('getStoreProfile')
+        dispatch('getStoreProfile'),
+        dispatch('getStoreCategory')
       ])
     } catch (e) {
       console.error(e)
@@ -69,6 +72,15 @@ export const actions = actionTree({ state, mutations, getters }, {
   },
   async getProducts ({ commit }) {
     const products = await this.$axios.get('/products') as ProductsList
+
+    commit('SET_PRODUCTS', products)
+  },
+  async getProductsByCategory ({ commit }, { category } : { category: number }) {
+    const products = await this.$axios.get('/products', {
+      params: {
+        category
+      }
+    }) as ProductsList
 
     commit('SET_PRODUCTS', products)
   }

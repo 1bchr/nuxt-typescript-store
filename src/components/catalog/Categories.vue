@@ -1,5 +1,8 @@
 <template>
-  <div class="d-flex flex-column w-100">
+  <div
+    v-if="$accessor.categories.length"
+    class="d-flex flex-column w-100"
+  >
     <div class="d-flex flex-column">
       <h5 class="pb-2">
         Категории:
@@ -9,14 +12,19 @@
           v-for="category in $accessor.categories"
           :key="category.id"
           class="list-group-item d-flex justify-content-between align-items-center pointer"
-          :class="{ 'active-bg': false }"
+          :class="{ 'active-bg': currentCategory === category.id }"
           @mouseenter="hoveredCategory = category"
           @mouseleave="hoveredCategory = null"
         >
-          {{ category.name }}
-          <span class="badge bg-danger badge-pill text-white">
-            {{ category.productCount }}
-          </span>
+          <nuxt-link
+            class="w-100 d-flex justify-content-between align-items-center"
+            :to="`/category/${category.id}`"
+          >
+            {{ category.name }}
+            <span class="badge bg-danger badge-pill text-white">
+              {{ category.productCount }}
+            </span>
+          </nuxt-link>
         </li>
       </ul>
     </div>
@@ -35,6 +43,12 @@ import { CategoryItem } from '~/src/types'
 export default Vue.extend({
   name: 'Categories',
   components: { CategoryInfo },
+  props: {
+    currentCategory: {
+      type: Number,
+      default: 0
+    }
+  },
   data () {
     return {
       hoveredCategory: null as CategoryItem | null
