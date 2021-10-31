@@ -53,7 +53,14 @@ export default Vue.extend({
     }
   },
   async mounted () {
-    await this.getProducts(this.id)
+    try {
+      await Promise.all([
+        this.$accessor.getStoreCategory(),
+        this.getProducts(this.id)
+      ])
+    } catch (e) {
+      throw new Error(e)
+    }
   },
   methods: {
     async getProducts (category: number) {

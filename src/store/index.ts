@@ -43,8 +43,7 @@ export const actions = actionTree({ state, mutations, getters }, {
   async nuxtServerInit ({ dispatch }) {
     try {
       await Promise.all([
-        dispatch('getStoreProfile'),
-        dispatch('getStoreCategory')
+        dispatch('getStoreProfile')
       ])
     } catch (e) {
       console.error(e)
