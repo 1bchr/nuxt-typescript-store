@@ -8,8 +8,6 @@ export const state = () => ({
   categories: [] as CategoryItem[],
   products: {} as ProductsList,
 
-  loading: false,
-
   isMobile: false,
   isMobileOrTable: false,
   windowWidth: 0,

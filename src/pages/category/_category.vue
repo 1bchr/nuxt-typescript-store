@@ -4,7 +4,7 @@
       class="py-3"
       :class="{ 'px-3': $accessor.isMobileOrTable }"
     >
-      Название категории
+      {{ getCategoryName() }}
     </h1>
     <div
       class="row mx-0"
