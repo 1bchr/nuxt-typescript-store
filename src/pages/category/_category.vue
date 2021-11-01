@@ -51,8 +51,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Categories from '~/src/components/catalog/Categories.vue'
-import ProductCard from '~/src/components/catalog/ProductCard.vue'
+import Categories from '~/src/components/category/Categories.vue'
+import ProductCard from '~/src/components/product/ProductCard.vue'
 import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
 
 export default Vue.extend({
@@ -62,12 +62,12 @@ export default Vue.extend({
     await this.getProducts(this.id)
   },
   computed: {
-    id () {
+    id (): number {
       return Number(this.$route.params.category)
     }
   },
   methods: {
-    async getProducts (category: number) {
+    async getProducts (category: number): void {
       await this.$accessor.getProductsByCategory({ category })
     },
     getCategoryName (): string {

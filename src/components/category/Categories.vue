@@ -43,7 +43,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import CategoryInfo from '~/src/components/catalog/CategoryInfo.vue'
+import CategoryInfo from '~/src/components/category/CategoryInfo.vue'
 import { CategoryItem } from '~/src/types'
 
 export default Vue.extend({

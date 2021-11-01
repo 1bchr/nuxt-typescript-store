@@ -45,8 +45,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Categories from '~/src/components/catalog/Categories.vue'
-import ProductCard from '~/src/components/catalog/ProductCard.vue'
+import Categories from '~/src/components/category/Categories.vue'
+import ProductCard from '~/src/components/product/ProductCard.vue'
 
 export default Vue.extend({
   name: 'App',

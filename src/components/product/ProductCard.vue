@@ -21,7 +21,7 @@
 // eslint-disable-next-line import/named
 import Vue, { PropType } from 'vue'
 import { Product } from '~/src/types/products'
-import ProductCardImgSlider from '~/src/components/catalog/ProductCardImgSlider.vue'
+import ProductCardImgSlider from '~/src/components/product/ProductCardImgSlider.vue'
 
 export default Vue.extend({
   name: 'ProductCard',

@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import Categories from '~/src/components/catalog/Categories.vue'
+import Categories from '~/src/components/category/Categories.vue'
 
 export default Vue.extend({
   name: 'CommonHeader',

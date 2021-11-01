@@ -1,8 +1,8 @@
 <template>
   <div
     class="slider"
-    @mousemove="test"
-    @mouseleave="setCurrentImageUrl"
+    @mousemove="selectSliderImage"
+    @mouseleave="setCurrentImage"
   >
     <img
       v-if="!currentImageUrl"
@@ -26,7 +26,6 @@
 </template>
 
 <script lang="ts">
-// eslint-disable-next-line import/named
 import Vue, { PropType } from 'vue'
 import { ProductGalleryImages } from '~/src/types/products'
 
@@ -45,15 +44,15 @@ export default Vue.extend({
     }
   },
   mounted () {
-    this.setCurrentImageUrl()
+    this.setCurrentImage()
   },
   methods: {
-    setCurrentImageUrl () {
+    setCurrentImage (): void {
       if (!this.images.length) return
       this.currentImageUrl = this.images[0].smallThumbnailUrl
       this.currentImageIndex = 0
     },
-    test (event: MouseEvent) {
+    selectSliderImage (event: MouseEvent): void {
       if (this.images.length <= 1) return
       const element = event.target as HTMLElement
       const elementWidth = element.clientWidth

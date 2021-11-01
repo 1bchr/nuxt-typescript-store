@@ -36,10 +36,10 @@ export const mutations = mutationTree(state, {
     if (windowHeight) state.windowHeight = windowHeight
     if (windowWidth) state.windowWidth = windowWidth
   },
-  SET_CATEGORIES (state, categories) {
+  SET_CATEGORIES (state, categories: CategoryItem[]) {
     state.categories = categories
   },
-  SET_PRODUCTS (state, products) {
+  SET_PRODUCTS (state, products: ProductsList) {
     state.products = products
   }
 })
