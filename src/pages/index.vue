@@ -45,14 +45,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { NuxtAppOptions } from '@nuxt/types'
 import Categories from '~/src/components/category/Categories.vue'
 import ProductCard from '~/src/components/product/ProductCard.vue'
 
 export default Vue.extend({
   name: 'App',
   components: { Categories, ProductCard },
-  async fetch () {
-    await this.$accessor.getProducts()
+  async asyncData ({ app } : { app: NuxtAppOptions }) {
+    await app.$accessor.getProducts()
   }
 })
 </script>

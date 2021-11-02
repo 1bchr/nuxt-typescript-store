@@ -51,6 +51,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { NuxtAppOptions } from '@nuxt/types'
+import { Route } from 'vue-router'
 import Categories from '~/src/components/category/Categories.vue'
 import ProductCard from '~/src/components/product/ProductCard.vue'
 import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
@@ -58,18 +60,20 @@ import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
 export default Vue.extend({
   name: 'App',
   components: { Categories, ProductCard, Breadcrumbs },
-  async fetch () {
-    await this.getProducts(this.id)
+  async asyncData ({ app, route } : { app: NuxtAppOptions, route: Route }) {
+    const category = Number(route.params.category)
+    await app.$accessor.getProductsByCategory({ category })
+
+    return {
+      id: category
+    }
   },
-  computed: {
-    id (): number {
-      return Number(this.$route.params.category)
+  data () {
+    return {
+      id: 0
     }
   },
   methods: {
-    async getProducts (category: number): void {
-      await this.$accessor.getProductsByCategory({ category })
-    },
     getCategoryName (): string {
       const currentCategory = this.$accessor.categories.find(el => el.id === this.id)
       return currentCategory ? currentCategory.name : ''
