@@ -12,6 +12,7 @@ export interface Product {
   galleryImages: ProductGalleryImages[]
   defaultDisplayedPrice: number
   defaultDisplayedPriceFormatted: string
+  categoryIds: number[]
 }
 
 export interface ProductsList {
