@@ -21,7 +21,7 @@ export default ({ $axios }: { $axios: NuxtAxiosInstance }) => {
 
   $axios.onResponse((res: AxiosResponse) => {
     if (typeof window !== 'undefined' && window.$nuxt?.$loading) {
-      window.$nuxt.$loading.finish()
+      setTimeout(() => window.$nuxt.$loading.finish(), 500)
     }
 
     return res.data
