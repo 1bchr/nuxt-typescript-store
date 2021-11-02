@@ -13,7 +13,7 @@
         {{ product.defaultDisplayedPriceFormatted }}
       </span>
       <button type="button" class="btn btn-danger">
-        В корзину
+        Купить
       </button>
     </div>
   </div>

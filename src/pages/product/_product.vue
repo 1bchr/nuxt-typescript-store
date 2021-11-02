@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="product">
     <breadcrumbs
       v-if="$accessor.categories.length"
       :category="$accessor.product.categoryIds[0] || 0"
@@ -11,10 +11,17 @@
     >
       {{ $accessor.product.name }}
     </h1>
-    <product-page-img-slider
-      v-if="$accessor.product.galleryImages.length"
-      :images-list="$accessor.product.galleryImages"
-    />
+    <div class="product__container">
+      <product-page-img-slider
+        v-if="$accessor.product.galleryImages.length"
+        :images-list="$accessor.product.galleryImages"
+        class="product__slider"
+      />
+      <div class="product__info">
+        <!-- eslint-disable-next-line -->
+        <div v-html="$accessor.product.description" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -45,5 +52,9 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-
+.product {
+  &__container {
+    display: flex;
+  }
+}
 </style>
