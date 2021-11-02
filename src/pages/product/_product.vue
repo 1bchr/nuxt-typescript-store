@@ -11,6 +11,10 @@
     >
       {{ $accessor.product.name }}
     </h1>
+    <product-page-img-slider
+      v-if="$accessor.product.galleryImages.length"
+      :images-list="$accessor.product.galleryImages"
+    />
   </div>
 </template>
 
@@ -19,10 +23,11 @@ import Vue from 'vue'
 import { NuxtAppOptions } from '@nuxt/types'
 import { Route } from 'vue-router'
 import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
+import ProductPageImgSlider from '~/src/components/product/ProductPageImgSlider.vue'
 
 export default Vue.extend({
   name: 'Product',
-  components: { Breadcrumbs },
+  components: { Breadcrumbs, ProductPageImgSlider },
   async asyncData ({ app, route } : { app: NuxtAppOptions, route: Route }) {
     const product = Number(route.params.product)
 
