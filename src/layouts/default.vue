@@ -17,16 +17,7 @@ import CommonHeader from '~/src/components/header/CommonHeader.vue'
 export default Vue.extend({
   name: 'Default',
   components: { CommonHeader },
-  // @ts-ignore
-  loading: {
-    continuous: true
-  },
-  mounted () {
-    this.$nextTick(() => {
-      this.$nuxt.$loading.start()
-      setTimeout(() => this.$nuxt.$loading.finish(), 2000)
-    })
-  }
+  loading: true
 })
 </script>
 

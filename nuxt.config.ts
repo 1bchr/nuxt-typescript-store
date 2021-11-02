@@ -29,7 +29,8 @@ export default {
   },
   loading: {
     color: '#dc3545',
-    height: '3px'
+    height: '3px',
+    continuous: true
   },
   dir: {
     assets: 'src/assets',
