@@ -50,7 +50,7 @@ import Categories from '~/src/components/category/Categories.vue'
 import ProductCard from '~/src/components/product/ProductCard.vue'
 
 export default Vue.extend({
-  name: 'App',
+  name: 'Catalog',
   components: { Categories, ProductCard },
   async asyncData ({ app } : { app: NuxtAppOptions }) {
     await app.$accessor.getProducts()

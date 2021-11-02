@@ -58,7 +58,7 @@ import ProductCard from '~/src/components/product/ProductCard.vue'
 import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
 
 export default Vue.extend({
-  name: 'App',
+  name: 'Category',
   components: { Categories, ProductCard, Breadcrumbs },
   async asyncData ({ app, route } : { app: NuxtAppOptions, route: Route }) {
     const category = Number(route.params.category)

@@ -1,11 +1,13 @@
 <template>
   <div class="product-card d-flex flex-column mx-2 mb-3 p-3">
-    <product-card-img-slider
-      :images="product.galleryImages"
-    />
-    <h6 class="mt-3">
+    <nuxt-link :to="`/product/${product.id}`">
+      <product-card-img-slider
+        :images="product.galleryImages"
+      />
+    </nuxt-link>
+    <nuxt-link :to="`/product/${product.id}`" class="mt-3 h6">
       {{ product.name }}
-    </h6>
+    </nuxt-link>
     <div class="d-flex mt-3 justify-content-between align-items-center">
       <span class="product-card__price">
         {{ product.defaultDisplayedPriceFormatted }}
@@ -44,6 +46,14 @@ export default Vue.extend({
   &__price {
     font-size: 18px;
     font-weight: 600;
+  }
+}
+
+.h6 {
+  transition: .2s;
+
+  &:hover {
+    color: var(--info)
   }
 }
 </style>
