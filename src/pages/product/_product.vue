@@ -56,6 +56,10 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .product {
-  &__container {}
+  &__slider {
+    @include mobile() {
+      margin: 0 auto;
+    }
+  }
 }
 </style>

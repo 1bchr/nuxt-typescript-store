@@ -17,6 +17,7 @@
         :src="image.smallThumbnailUrl"
         alt="Control img"
         @mouseenter="selectSlide(i)"
+        @click="$accessor.isMobileOrTable ? selectSlide(i) : undefined"
       >
     </div>
   </div>
@@ -54,9 +55,23 @@ export default Vue.extend({
   height: 640px;
   max-width: 480px;
 
+  @include tablet() {
+    height: 480px;
+    min-width: 320px;
+  }
+
+  @include mobile() {
+    height: 480px;
+    display: flex;
+  }
+
   &__main {
     width: 100%;
     height: 100%;
+
+    @include mobile() {
+      width: calc(100% - 70px);
+    }
 
     img {
       width: 100%;
@@ -71,6 +86,15 @@ export default Vue.extend({
     display: flex;
     justify-content: center;
     margin-top: 10px;
+    transition: .2s;
+
+    @include mobile() {
+      height: auto;
+      width: 70px;
+      flex-direction: column;
+      justify-content: start;
+      margin-left: 5px;
+    }
 
     img {
       width: 100px;
@@ -79,6 +103,13 @@ export default Vue.extend({
       opacity: .6;
       cursor: pointer;
       transition: .3s;
+
+      @include mobile() {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 5px;
+        opacity: 1;
+      }
 
       &:hover {
         opacity: 1;
