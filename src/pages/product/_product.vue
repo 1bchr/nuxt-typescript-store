@@ -11,13 +11,16 @@
     >
       {{ $accessor.product.name }}
     </h1>
-    <div class="product__container">
+    <div
+      class="product__container px-3"
+      :class="{ 'd-flex px-0': !$accessor.isMobile }"
+    >
       <product-page-img-slider
         v-if="$accessor.product.galleryImages.length"
         :images-list="$accessor.product.galleryImages"
         class="product__slider"
       />
-      <div class="product__info">
+      <div class="product__info mt-3">
         <!-- eslint-disable-next-line -->
         <div v-html="$accessor.product.description" />
       </div>
@@ -53,8 +56,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .product {
-  &__container {
-    display: flex;
-  }
+  &__container {}
 }
 </style>

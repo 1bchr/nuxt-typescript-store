@@ -82,5 +82,15 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios'
+  ],
+
+  styleResources: {
+    scss: ['~/src/scss/mixins.scss']
+  },
+  css: [
+    {
+      src: '~/src/scss/mixins.scss',
+      lang: 'sass'
+    }
   ]
 }
