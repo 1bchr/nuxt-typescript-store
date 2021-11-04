@@ -62,6 +62,11 @@ export default Vue.extend({
     return {
       id: 0
     }
+  },
+  head () {
+    return {
+      title: this.$accessor.product.name + ' | Nuxt.js-TypeScript store'
+    }
   }
 })
 </script>

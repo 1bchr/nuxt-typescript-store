@@ -13,7 +13,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Nuxt.js-TypeScript store',
+    title: 'Главная | Nuxt.js-TypeScript store',
     htmlAttrs: {
       lang: 'ru'
     },

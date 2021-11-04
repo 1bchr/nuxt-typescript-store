@@ -8,7 +8,7 @@
       class="pb-3"
       :class="{ 'px-3': $accessor.isMobileOrTable }"
     >
-      {{ getCategoryName() }}
+      {{ categoryName }}
     </h1>
     <div
       class="row mx-0"
@@ -62,21 +62,23 @@ export default Vue.extend({
   components: { Categories, ProductCard, Breadcrumbs },
   async asyncData ({ app, route } : { app: NuxtAppOptions, route: Route }) {
     const category = Number(route.params.category)
+    const currentCategory = app.$accessor.categories.find(el => el.id === category)
     await app.$accessor.getProductsByCategory({ category })
 
     return {
-      id: category
+      id: category,
+      categoryName: currentCategory ? currentCategory.name : ''
     }
   },
   data () {
     return {
-      id: 0
+      id: 0,
+      categoryName: ''
     }
   },
-  methods: {
-    getCategoryName (): string {
-      const currentCategory = this.$accessor.categories.find(el => el.id === this.id)
-      return currentCategory ? currentCategory.name : ''
+  head () {
+    return {
+      title: this.$data.categoryName + ' | Nuxt.js-TypeScript store'
     }
   }
 })
