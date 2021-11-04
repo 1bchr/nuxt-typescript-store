@@ -24,7 +24,7 @@ export const mutations = mutationTree(state, {
 
     this.UPDATE_PRODUCTS(state)
   },
-  REMOVE_PRODUCT (state, id) {
+  REMOVE_PRODUCT (state, id: number) {
     state.products = state.products.filter(product => product.id !== id)
 
     this.UPDATE_PRODUCTS(state)
