@@ -5,12 +5,26 @@
       :category="$accessor.product.categoryIds[0] || 0"
       :product-name="$accessor.product.name"
     />
-    <h1
-      class="pb-3"
-      :class="{ 'px-3': $accessor.isMobileOrTable }"
-    >
-      {{ $accessor.product.name }}
-    </h1>
+    <div class="d-flex justify-content-between">
+      <h1
+        class="pb-3"
+        :class="{ 'px-3': $accessor.isMobileOrTable }"
+      >
+        {{ $accessor.product.name }}
+      </h1>
+      <div
+        v-if="!$accessor.isMobile"
+        class="product__actions bg-info px-3 mb-3"
+        :class="{ 'mr-3': $accessor.isMobileOrTable }"
+      >
+        <span class="product__actions_price mr-4">
+          {{ $accessor.product.defaultDisplayedPriceFormatted }}
+        </span>
+        <button type="button" class="btn btn-danger">
+          Купить
+        </button>
+      </div>
+    </div>
     <div
       class="product__container px-3"
       :class="{ 'd-flex px-0': !$accessor.isMobile }"
@@ -24,6 +38,17 @@
         <!-- eslint-disable-next-line -->
         <div v-html="$accessor.product.description" />
       </div>
+    </div>
+    <div
+      v-if="$accessor.isMobile"
+      class="product__actions bg-info px-3 py-2"
+    >
+      <span class="product__actions_price">
+        {{ $accessor.product.defaultDisplayedPriceFormatted }}
+      </span>
+      <button type="button" class="btn btn-danger">
+        Купить
+      </button>
     </div>
   </div>
 </template>
@@ -59,6 +84,35 @@ export default Vue.extend({
   &__slider {
     @include mobile() {
       margin: 0 auto;
+    }
+  }
+
+  &__info {
+    margin-left: 20px;
+
+    @include mobile() {
+      margin-left: 0;
+    }
+  }
+
+  &__actions {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+    border-radius: 0.25rem;
+
+    @include mobile() {
+      width: 100%;
+      border-radius: 0;
+    }
+
+    &_price {
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
     }
   }
 }

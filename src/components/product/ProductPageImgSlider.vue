@@ -10,7 +10,10 @@
         tag="img"
       />
     </div>
-    <div class="slider__control">
+    <div
+      v-if="imagesList.length > 1"
+      class="slider__control"
+    >
       <img
         v-for="(image, i) in imagesList"
         :key="image.id"
@@ -63,6 +66,7 @@ export default Vue.extend({
   @include mobile() {
     height: 480px;
     display: flex;
+    justify-content: center;
   }
 
   &__main {
