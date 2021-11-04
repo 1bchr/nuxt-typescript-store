@@ -3,7 +3,10 @@
     <span class="widget__price">
       {{ $accessor.product.defaultDisplayedPriceFormatted }}
     </span>
-    <button type="button" class="btn btn-danger">
+    <button
+      class="btn btn-danger"
+      @click="$accessor.cart.ADD_PRODUCT($accessor.product.id)"
+    >
       Купить
     </button>
   </div>

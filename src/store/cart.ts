@@ -5,7 +5,11 @@ export const state = () => ({
   products: [] as Product[]
 })
 
-export const getters = getterTree(state, {})
+export const getters = getterTree(state, {
+  thisAddedToCart: state => (id: number) => {
+    return state.products.some(product => product.id === id)
+  }
+})
 
 export const mutations = mutationTree(state, {
   GET_PRODUCTS (state) {
@@ -21,13 +25,10 @@ export const mutations = mutationTree(state, {
   },
   ADD_PRODUCT (state, product: Product) {
     state.products.push(product)
-
-    this.UPDATE_PRODUCTS(state)
+    console.log(product)
   },
   REMOVE_PRODUCT (state, id: number) {
     state.products = state.products.filter(product => product.id !== id)
-
-    this.UPDATE_PRODUCTS(state)
   }
 })
 
@@ -35,10 +36,12 @@ export const actions = actionTree({ state, mutations, getters }, {
   getCartProducts ({ commit }) {
     commit('GET_PRODUCTS')
   },
-  addToCart({ commit }, { product } : { product: Product }) {
+  addToCart ({ commit }, { product } : { product: Product }) {
     commit('ADD_PRODUCT', product)
+    commit('UPDATE_PRODUCTS')
   },
-  removeFromCart({ commit }, { id } : { id: number }) {
+  removeFromCart ({ commit }, { id } : { id: number }) {
     commit('REMOVE_PRODUCT', id)
+    commit('UPDATE_PRODUCTS')
   }
 })

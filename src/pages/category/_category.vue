@@ -62,12 +62,11 @@ export default Vue.extend({
   components: { Categories, ProductCard, Breadcrumbs },
   async asyncData ({ app, route } : { app: NuxtAppOptions, route: Route }) {
     const category = Number(route.params.category)
-    const currentCategory = app.$accessor.categories.find(el => el.id === category)
     await app.$accessor.getProductsByCategory({ category })
 
     return {
       id: category,
-      categoryName: currentCategory ? currentCategory.name : ''
+      categoryName: app.$accessor.getCategoryName(category)
     }
   },
   data () {

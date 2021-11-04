@@ -17,7 +17,11 @@ export const state = () => ({
   windowHeight: 0
 })
 
-export const getters = getterTree(state, {})
+export const getters = getterTree(state, {
+  getCategoryName: state => (id: number) => {
+    return state.categories.find(category => category.id === id)?.name || ''
+  }
+})
 
 export const mutations = mutationTree(state, {
   SET_STORE_NAME (state, name: string) {
