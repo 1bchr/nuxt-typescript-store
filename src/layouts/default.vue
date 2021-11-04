@@ -17,7 +17,10 @@ import CommonHeader from '~/src/components/header/CommonHeader.vue'
 export default Vue.extend({
   name: 'Default',
   components: { CommonHeader },
-  loading: true
+  loading: true,
+  mounted () {
+    this.$accessor.cart.getCartProducts()
+  }
 })
 </script>
 
