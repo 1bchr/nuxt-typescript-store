@@ -12,18 +12,11 @@
       >
         {{ $accessor.product.name }}
       </h1>
-      <div
+      <product-add-to-cart
         v-if="!$accessor.isMobile"
-        class="product__actions bg-info px-3 mb-3"
+        class="product__actions px-3 mb-3"
         :class="{ 'mr-3': $accessor.isMobileOrTable }"
-      >
-        <span class="product__actions_price mr-4">
-          {{ $accessor.product.defaultDisplayedPriceFormatted }}
-        </span>
-        <button type="button" class="btn btn-danger">
-          Купить
-        </button>
-      </div>
+      />
     </div>
     <div
       class="product__container px-3"
@@ -39,17 +32,10 @@
         <div v-html="$accessor.product.description" />
       </div>
     </div>
-    <div
+    <product-add-to-cart
       v-if="$accessor.isMobile"
-      class="product__actions bg-info px-3 py-2"
-    >
-      <span class="product__actions_price">
-        {{ $accessor.product.defaultDisplayedPriceFormatted }}
-      </span>
-      <button type="button" class="btn btn-danger">
-        Купить
-      </button>
-    </div>
+      class="product__actions px-3 py-2"
+    />
   </div>
 </template>
 
@@ -59,10 +45,11 @@ import { NuxtAppOptions } from '@nuxt/types'
 import { Route } from 'vue-router'
 import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
 import ProductPageImgSlider from '~/src/components/product/ProductPageImgSlider.vue'
+import ProductAddToCart from '~/src/components/product/ProductAddToCart.vue'
 
 export default Vue.extend({
   name: 'Product',
-  components: { Breadcrumbs, ProductPageImgSlider },
+  components: { Breadcrumbs, ProductPageImgSlider, ProductAddToCart },
   async asyncData ({ app, route } : { app: NuxtAppOptions, route: Route }) {
     const product = Number(route.params.product)
 
@@ -96,23 +83,9 @@ export default Vue.extend({
   }
 
   &__actions {
-    position: sticky;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 250px;
-    border-radius: 0.25rem;
-
     @include mobile() {
-      width: 100%;
-      border-radius: 0;
-    }
-
-    &_price {
-      color: white;
-      font-size: 18px;
-      font-weight: 600;
+      position: sticky;
+      bottom: 0;
     }
   }
 }
