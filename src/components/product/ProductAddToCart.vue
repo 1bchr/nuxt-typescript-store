@@ -4,11 +4,19 @@
       {{ $accessor.product.defaultDisplayedPriceFormatted }}
     </span>
     <button
+      v-if="!$accessor.cart.thisAddedToCart($accessor.product.id)"
       class="btn btn-danger"
-      @click="$accessor.cart.ADD_PRODUCT($accessor.product.id)"
+      @click="addToCart"
     >
       Купить
     </button>
+    <nuxt-link
+      v-else
+      class="btn btn-outline-danger"
+      to="/cart"
+    >
+      В корзину
+    </nuxt-link>
   </div>
 </template>
 
@@ -16,7 +24,12 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  name: 'ProductAddToCart'
+  name: 'ProductAddToCart',
+  methods: {
+    addToCart () {
+      this.$accessor.cart.addToCart({ product: this.$accessor.product })
+    }
+  }
 })
 </script>
 

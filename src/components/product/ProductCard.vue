@@ -12,9 +12,20 @@
       <span class="product-card__price">
         {{ product.defaultDisplayedPriceFormatted }}
       </span>
-      <button type="button" class="btn btn-danger">
+      <button
+        v-if="!$accessor.cart.thisAddedToCart(product.id)"
+        class="btn btn-danger"
+        @click="addToCart"
+      >
         Купить
       </button>
+      <nuxt-link
+        v-else
+        class="btn btn-outline-danger"
+        to="/cart"
+      >
+        В корзину
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -32,6 +43,11 @@ export default Vue.extend({
     product: {
       type: Object as PropType<Product>,
       required: true
+    }
+  },
+  methods: {
+    addToCart () {
+      this.$accessor.cart.addToCart({ product: this.product })
     }
   }
 })
