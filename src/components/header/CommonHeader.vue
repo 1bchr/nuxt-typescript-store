@@ -27,13 +27,12 @@
         </nuxt-link>
       </div>
       <nuxt-link to="/cart" class="navbar-nav flex-row">
-        <a
+        <span
           class="nav-link ml-2"
           :class="{ 'text-white': $accessor.cart.products.length }"
-          href="#"
         >
           Корзина
-        </a>
+        </span>
         <span
           v-if="$accessor.cart.products.length"
           class="badge bg-danger badge-pill text-white ml-2"

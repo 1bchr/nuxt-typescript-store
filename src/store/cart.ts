@@ -8,6 +8,9 @@ export const state = () => ({
 export const getters = getterTree(state, {
   thisAddedToCart: state => (id: number) => {
     return state.products.some(product => product.id === id)
+  },
+  getTotalAmount: (state): number => {
+    return state.products.reduce((totalAmount: number, item: Product) => totalAmount + item.defaultDisplayedPrice, 0)
   }
 })
 

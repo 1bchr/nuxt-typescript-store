@@ -1,6 +1,38 @@
 <template>
   <div>
     <breadcrumbs cart />
+    <div
+      class="cart"
+      :class="{ 'px-3': $accessor.isMobileOrTable }"
+    >
+      <div class="cart__col flex-grow-1">
+        <div
+          v-for="product in $accessor.cart.products"
+          :key="product.id"
+          class="card_product"
+        >
+          {{ product.name }}
+        </div>
+      </div>
+      <div
+        v-if="!$accessor.isMobile"
+        class="cart__col flex-grow-0"
+      >
+        <div class="cart__registration">
+          <div class="cart__info">
+            <span class="cart__info_title">
+              В корзине {{ $accessor.cart.products.length }} продукт(а/ов):
+            </span>
+            <span class="cart__info_price">
+              {{ $accessor.cart.getTotalAmount + '₽' }}
+            </span>
+          </div>
+          <button class="btn btn-danger">
+            Оформить заказ
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -15,5 +47,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-
+.cart {
+  display: flex;
+}
 </style>
