@@ -25,6 +25,12 @@
     >
       {{ '/ ' + productName }}
     </span>
+    <span
+      v-if="cart"
+      class="ml-2"
+    >
+      {{ '/ Корзина' }}
+    </span>
   </div>
 </template>
 
@@ -41,6 +47,10 @@ export default Vue.extend({
     productName: {
       type: String,
       default: ''
+    },
+    cart: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {

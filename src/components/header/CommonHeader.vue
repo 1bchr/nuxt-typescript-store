@@ -26,9 +26,21 @@
           {{ $accessor.storeName }}
         </nuxt-link>
       </div>
-      <div class="navbar-nav flex-row">
-        <a class="nav-link ml-2" href="#">Корзина</a>
-      </div>
+      <nuxt-link to="/cart" class="navbar-nav flex-row">
+        <a
+          class="nav-link ml-2"
+          :class="{ 'text-white': $accessor.cart.products.length }"
+          href="#"
+        >
+          Корзина
+        </a>
+        <span
+          v-if="$accessor.cart.products.length"
+          class="badge bg-danger badge-pill text-white ml-2"
+        >
+          {{ $accessor.cart.products.length }}
+        </span>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -57,6 +69,18 @@ export default Vue.extend({
     top: 100%;
     left: 0;
     z-index: 3;
+  }
+
+  .badge {
+    font-size: 16px
+  }
+
+  .flex-row {
+    align-items: center;
+  }
+
+  .text-white {
+    font-weight: 600;
   }
 }
 </style>

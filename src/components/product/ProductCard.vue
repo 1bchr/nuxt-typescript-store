@@ -24,7 +24,7 @@
         class="btn btn-outline-danger"
         to="/cart"
       >
-        В корзину
+        В корзине
       </nuxt-link>
     </div>
   </div>
