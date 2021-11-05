@@ -9,9 +9,25 @@
         <div
           v-for="product in $accessor.cart.products"
           :key="product.id"
-          class="card_product"
+          class="card__product"
         >
-          {{ product.name }}
+          <nuxt-link
+            :to="`/product/${product.id}`"
+            class="card__product_image"
+          >
+            <img :src="product.galleryImages[0].thumbnailUrl" alt="">
+          </nuxt-link>
+          <div class="card__product_info">
+            <nuxt-link
+              :to="`/product/${product.id}`"
+              class="card__product_name"
+            >
+              {{ product.name }}
+            </nuxt-link>
+            <div class="card__product_actions">
+
+            </div>
+          </div>
         </div>
       </div>
       <div
