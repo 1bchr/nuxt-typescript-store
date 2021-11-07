@@ -15,6 +15,10 @@ export interface Product {
   categoryIds: number[]
 }
 
+export interface CartProduct extends Product {
+  count: number
+}
+
 export interface ProductsList {
   count: number
   limit: number

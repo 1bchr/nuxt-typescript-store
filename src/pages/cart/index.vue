@@ -9,24 +9,21 @@
         <div
           v-for="product in $accessor.cart.products"
           :key="product.id"
-          class="card__product"
+          class="cart__product"
         >
           <nuxt-link
             :to="`/product/${product.id}`"
-            class="card__product_image"
+            class="cart__product_image"
           >
             <img :src="product.galleryImages[0].thumbnailUrl" alt="">
           </nuxt-link>
-          <div class="card__product_info">
+          <div class="cart__product_info">
             <nuxt-link
               :to="`/product/${product.id}`"
-              class="card__product_name"
+              class="cart__product_name"
             >
               {{ product.name }}
             </nuxt-link>
-            <div class="card__product_actions">
-
-            </div>
           </div>
         </div>
       </div>
@@ -34,16 +31,14 @@
         v-if="!$accessor.isMobile"
         class="cart__col flex-grow-0"
       >
-        <div class="cart__registration">
-          <div class="cart__info">
-            <span class="cart__info_title">
-              В корзине {{ $accessor.cart.products.length }} продукт(а/ов):
-            </span>
-            <span class="cart__info_price">
+        <div class="breadcrumb flex-column">
+          <div>
+            В корзине {{ $accessor.cart.products.length }} продукт(а/ов):
+            <span class="cart__price">
               {{ $accessor.cart.getTotalAmount + '₽' }}
             </span>
           </div>
-          <button class="btn btn-danger">
+          <button class="btn btn-danger mt-4">
             Оформить заказ
           </button>
         </div>
@@ -65,5 +60,39 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .cart {
   display: flex;
+
+  &__price {
+    font-size: 20px;
+    font-weight: 600;
+    margin-left: 40px;
+  }
+
+  &__product {
+    display: flex;
+    height: 200px;
+
+    &_image {
+      flex: 0 0 auto;
+      height: 100%;
+      width: 200px;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+
+    &_info {
+      flex: 0 1 auto;
+      padding: 20px;
+    }
+
+    &_name {
+      font-size: 18px;
+      font-weight: 600;
+      width: 100%;
+    }
+  }
 }
 </style>
