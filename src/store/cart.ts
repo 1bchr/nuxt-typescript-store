@@ -33,6 +33,9 @@ export const mutations = mutationTree(state, {
   },
   REMOVE_PRODUCT (state, id: number) {
     state.products = state.products.filter(product => product.id !== id)
+  },
+  REMOVE_ALL_PRODUCTS (state) {
+    state.products = []
   }
 })
 

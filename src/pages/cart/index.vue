@@ -61,25 +61,50 @@
               {{ $accessor.cart.getTotalAmount + '₽' }}
             </span>
           </div>
-          <button class="btn btn-danger mt-4">
+          <button
+            class="btn btn-danger mt-4"
+            @click="placeOrder"
+          >
             Оформить заказ
           </button>
         </div>
       </div>
     </div>
+    <popup v-model="orderWindow">
+      <div class="d-flex flex-column align-items-center">
+        <span class="h3">Ваш заказ оформлен.</span>
+        <span class="h3 mt-3">Спасибо за покупку!</span>
+        <nuxt-link
+          to="/"
+          class="btn btn-info mt-3"
+        >
+          Перейти на главную
+        </nuxt-link>
+      </div>
+    </popup>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
+import Popup from '~/src/components/ui/Popup.vue'
 
 export default Vue.extend({
   name: 'Cart',
-  components: { Breadcrumbs },
+  components: { Breadcrumbs, Popup },
+  data () {
+    return {
+      orderWindow: false
+    }
+  },
   methods: {
     remove (id: number): void {
       this.$accessor.cart.removeFromCart({ id })
+    },
+    placeOrder (): void {
+      this.$accessor.cart.REMOVE_ALL_PRODUCTS()
+      this.orderWindow = true
     }
   }
 })
