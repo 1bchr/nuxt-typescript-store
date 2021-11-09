@@ -1,15 +1,19 @@
 <template>
-  <div>
+  <div class="d-flex flex-column flex-grow-1">
     <breadcrumbs cart />
     <div
-      class="cart"
-      :class="{ 'px-3': $accessor.isMobileOrTable }"
+      class="cart flex-grow-1"
+      :class="{
+        'px-3': $accessor.isMobileOrTable,
+        'flex-column': $accessor.isMobile
+      }"
     >
       <div class="cart__col flex-grow-1">
         <div
           v-for="product in $accessor.cart.products"
           :key="product.id"
           class="cart__product"
+          :class="{ 'mr-3': !$accessor.isMobile }"
         >
           <nuxt-link
             :to="`/product/${product.id}`"
@@ -17,23 +21,42 @@
           >
             <img :src="product.galleryImages[0].thumbnailUrl" alt="">
           </nuxt-link>
-          <div class="cart__product_info">
+          <div class="cart__product_info d-flex flex-column justify-content-between">
             <nuxt-link
               :to="`/product/${product.id}`"
               class="cart__product_name"
             >
               {{ product.name }}
             </nuxt-link>
+            <div
+              class="d-flex"
+              :class="{
+                'justify-content-between': !$accessor.isMobile,
+                'flex-column': $accessor.isMobile
+              }"
+            >
+              <span class="cart__price">
+                {{ product.defaultDisplayedPriceFormatted }}
+              </span>
+              <button
+                class="btn btn-danger"
+                @click="remove(product.id)"
+              >
+                Удалить
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <div
-        v-if="!$accessor.isMobile"
         class="cart__col flex-grow-0"
+        :class="{ 'cart__sticky-bottom': $accessor.isMobile }"
       >
         <div class="breadcrumb flex-column">
-          <div>
-            В корзине {{ $accessor.cart.products.length }} продукт(а/ов):
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="mr-4">
+              В корзине {{ $accessor.cart.products.length }} продукт(а/ов):
+            </span>
             <span class="cart__price">
               {{ $accessor.cart.getTotalAmount + '₽' }}
             </span>
@@ -53,7 +76,12 @@ import Breadcrumbs from '~/src/components/ui/Breadcrumbs.vue'
 
 export default Vue.extend({
   name: 'Cart',
-  components: { Breadcrumbs }
+  components: { Breadcrumbs },
+  methods: {
+    remove (id: number): void {
+      this.$accessor.cart.removeFromCart({ id })
+    }
+  }
 })
 </script>
 
@@ -64,10 +92,10 @@ export default Vue.extend({
   &__price {
     font-size: 20px;
     font-weight: 600;
-    margin-left: 40px;
   }
 
   &__product {
+    border-top: 1px solid #e9ecef;
     display: flex;
     height: 200px;
 
@@ -84,7 +112,7 @@ export default Vue.extend({
     }
 
     &_info {
-      flex: 0 1 auto;
+      flex: 1 1 auto;
       padding: 20px;
     }
 
@@ -93,6 +121,11 @@ export default Vue.extend({
       font-weight: 600;
       width: 100%;
     }
+  }
+
+  &__sticky-bottom {
+    bottom: 0;
+    position: sticky;
   }
 }
 </style>

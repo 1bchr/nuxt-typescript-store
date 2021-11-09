@@ -2,7 +2,7 @@
   <div id="__store-root" class="d-flex flex-column h-100">
     <common-header class="sticky-top" />
     <div
-      class="flex-grow-1"
+      class="flex-grow-1 d-flex flex-column"
       :class="{ 'container': !$accessor.isMobileOrTable }"
     >
       <nuxt />
