@@ -63,6 +63,7 @@
           </div>
           <button
             class="btn btn-danger mt-4"
+            :disabled="!$accessor.cart.products.length"
             @click="placeOrder"
           >
             Оформить заказ

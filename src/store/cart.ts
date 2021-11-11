@@ -11,7 +11,7 @@ export const getters = getterTree(state, {
   },
   getTotalAmount: (state): number => {
     return state.products.reduce((totalAmount: number, item: CartProduct) => {
-      return totalAmount + item.defaultDisplayedPrice * item.count
+      return totalAmount + item.defaultDisplayedPrice * (item.count ?? 1)
     }, 0)
   }
 })

@@ -40,6 +40,9 @@ import Vue from 'vue'
 export default Vue.extend({
   name: 'Breadcrumbs',
   props: {
+    /**
+     * @description contains category id
+     * */
     category: {
       type: Number,
       default: 0
@@ -48,6 +51,9 @@ export default Vue.extend({
       type: String,
       default: ''
     },
+    /**
+     * @description true if component is on cart page
+     * */
     cart: {
       type: Boolean,
       default: false

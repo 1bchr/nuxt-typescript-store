@@ -16,7 +16,7 @@ export interface Product {
 }
 
 export interface CartProduct extends Product {
-  count: number
+  count?: number
 }
 
 export interface ProductsList {
